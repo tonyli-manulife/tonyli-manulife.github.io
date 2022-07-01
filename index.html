@@ -14,7 +14,7 @@
   </div>
   <script>
     function onkeydown(e) {
-     log('onkeydown:', e, e.target.value)
+      log(`onchange: ${e.target.tabIndex}, key: ${e.key} , key: ${e.code}`)
       const key = e.key
       const code = e.code
       const tabIndex = e.target.tabIndex
@@ -29,7 +29,7 @@
     }
 
     function oninput(e) {
-     log('oninput:', e, e.target.value)
+      log(`oninput: ${e.target.tabIndex}, ${e.target.value}`)
       const value = e.target.value
       const tabIndex = e.target.tabIndex
       const inputType = e.inputType
@@ -38,20 +38,10 @@
       }
     }
 
-    function onchange(e) {
-     log(`onchange: ${e.target.tabIndex}, ${e.target.value}`)
-    }
-
-    function onkeyup(e) {
-     log('onkeyup:', e.target.tabIndex, e.target.value)
-    }
-
     for (let i = 1; i <= 6; i++) {
       let tmp = document.getElementById(`${i}`)
       tmp.onkeydown = onkeydown
       tmp.oninput = oninput
-      tmp.onchange = oninput
-      tmp.onkeyup = onkeyup
     }
     document.getElementById(`1`).focus()
 
