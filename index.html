@@ -10,32 +10,26 @@
       <input id="5" tabindex="5" type="tel" maxlength="1" autocomplete="off" /><br />
       <input id="6" tabindex="6" type="tel" maxlength="1" autocomplete="off" /><br />
     </div>
+    <div id="log"></div>
   </div>
-  <div id="log"></div>
   <script>
-    // const dom = document.getElementById('one-time-code')
-    // const descriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')
-    // const originalSet = descriptor.set
-    // descriptor.set = function (value) {
-    //   console.log('Value set', this, value)
-    //   this.changeValueCallback && this.changeValueCallback('set', value)
-    //   originalSet.apply(this, arguments);
-    // }
-    // Object.defineProperty(HTMLInputElement.prototype, 'value', descriptor)
     function onkeydown(e) {
-      console.log('onkeyup:', e, e.target.value)
+     log('onkeydown:', e, e.target.value)
       const key = e.key
       const code = e.code
       const tabIndex = e.target.tabIndex
-      if ((code === 'Backspace' || code === 'Delete') && tabIndex > 1 && e.target.value === '') {
+      if (
+        (code === 'Backspace' || code === 'Delete') 
+        && tabIndex > 1 
+        && e.target.value === ''
+      ) {
         // 后退
         document.getElementById(`${tabIndex - 1}`).focus()
-        e.stop
       }
     }
 
     function oninput(e) {
-      console.log('onInput:', e, e.target.value)
+     log('oninput:', e, e.target.value)
       const value = e.target.value
       const tabIndex = e.target.tabIndex
       const inputType = e.inputType
@@ -45,42 +39,26 @@
     }
 
     function onchange(e) {
-      console.log('onchange:', e.target.tabIndex, e.target.value)
+     log(`onchange: ${e.target.tabIndex}, ${e.target.value}`)
+    }
+
+    function onkeyup(e) {
+     log('onkeyup:', e.target.tabIndex, e.target.value)
     }
 
     for (let i = 1; i <= 6; i++) {
       let tmp = document.getElementById(`${i}`)
       tmp.onkeydown = onkeydown
       tmp.oninput = oninput
-      tmp.onchange = onchange
+      tmp.onchange = oninput
+      tmp.onkeyup = onkeyup
     }
     document.getElementById(`1`).focus()
 
-
-
-
-
-    // function change(type, value) {
-    //   const log = document.getElementById('log')
-    //   log.innerHTML += `<div>${type}: ${value}</div>`
-    //   if (value) {
-    //     const list = value.split('')
-    //     for (let i = 0; i < list.length; i++) {
-    //       document.getElementById(`${i + 1}`).value = list[i]
-    //     }
-    //   }
-    // }
-
-    // dom.addEventListener('change', (e) => {
-    //   change('change:', e.target.value)
-    // })
-
-    // dom.addEventListener('input', (e) => {
-    //   change('input:', e.target.value)
-    // })
-    // dom.changeValueCallback = change
-    // dom.focus;
-
+    function log(string) {
+      const log = document.getElementById('log')
+      log.innerHTML += `<div>${string}</div>`
+    }
   </script>
 </body>
 
