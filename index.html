@@ -2,49 +2,84 @@
 
 <body>
   <div style='margin-top:10rem; text-align: center;'>
-    <input id="one-time-code" tab-index="0" type="tel" autocomplete="off" />
     <div style="margin-top: 1rem;">
-      <input id="1" tab-index="1" type="tel" autocomplete="off" /><br />
-      <input id="2" tab-index="2" type="tel" autocomplete="off" /><br />
-      <input id="3" tab-index="3" type="tel" autocomplete="off" /><br />
-      <input id="4" tab-index="4" type="tel" autocomplete="off" /><br />
-      <input id="5" tab-index="5" type="tel" autocomplete="off" /><br />
-      <input id="6" tab-index="6" type="tel" autocomplete="off" /><br />
+      <input id="1" tabindex="1" type="tel" maxlength="1" autocomplete="off" /><br />
+      <input id="2" tabindex="2" type="tel" maxlength="1" autocomplete="off" /><br />
+      <input id="3" tabindex="3" type="tel" maxlength="1" autocomplete="off" /><br />
+      <input id="4" tabindex="4" type="tel" maxlength="1" autocomplete="off" /><br />
+      <input id="5" tabindex="5" type="tel" maxlength="1" autocomplete="off" /><br />
+      <input id="6" tabindex="6" type="tel" maxlength="1" autocomplete="off" /><br />
     </div>
   </div>
   <div id="log"></div>
   <script>
-    const dom = document.getElementById('one-time-code')
-
-    const descriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')
-    const originalSet = descriptor.set
-    descriptor.set = function (value) {
-      console.log('Value set', this, value)
-      this.changeValueCallback && this.changeValueCallback('set', value)
-      originalSet.apply(this, arguments);
-    }
-    Object.defineProperty(HTMLInputElement.prototype, 'value', descriptor)
-
-    function change(type, value) {
-      const log = document.getElementById('log')
-      log.innerHTML += `<div>${type}: ${value}</div>`
-      if (value) {
-        const list = value.split('')
-        for (let i = 0; i < list.length; i++) {
-          document.getElementById(`${i + 1}`).value = list[i]
-        }
+    // const dom = document.getElementById('one-time-code')
+    // const descriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')
+    // const originalSet = descriptor.set
+    // descriptor.set = function (value) {
+    //   console.log('Value set', this, value)
+    //   this.changeValueCallback && this.changeValueCallback('set', value)
+    //   originalSet.apply(this, arguments);
+    // }
+    // Object.defineProperty(HTMLInputElement.prototype, 'value', descriptor)
+    function onkeydown(e) {
+      console.log('onkeyup:', e, e.target.value)
+      const key = e.key
+      const code = e.code
+      const tabIndex = e.target.tabIndex
+      if ((code === 'Backspace' || code === 'Delete') && tabIndex > 1 && e.target.value === '') {
+        // 后退
+        document.getElementById(`${tabIndex - 1}`).focus()
+        e.stop
       }
     }
 
-    dom.addEventListener('change', (e) => {
-      change('change:', e.target.value)
-    })
+    function oninput(e) {
+      console.log('onInput:', e, e.target.value)
+      const value = e.target.value
+      const tabIndex = e.target.tabIndex
+      const inputType = e.inputType
+      if (/\d/.test(value) && tabIndex < 6) {
+        document.getElementById(`${tabIndex + 1}`).focus()
+      }
+    }
 
-    dom.addEventListener('input', (e) => {
-      change('input:', e.target.value)
-    })
-    dom.changeValueCallback = change
-    dom.focus();
+    function onchange(e) {
+      console.log('onchange:', e.target.tabIndex, e.target.value)
+    }
+
+    for (let i = 1; i <= 6; i++) {
+      let tmp = document.getElementById(`${i}`)
+      tmp.onkeydown = onkeydown
+      tmp.oninput = oninput
+      tmp.onchange = onchange
+    }
+    document.getElementById(`1`).focus()
+
+
+
+
+
+    // function change(type, value) {
+    //   const log = document.getElementById('log')
+    //   log.innerHTML += `<div>${type}: ${value}</div>`
+    //   if (value) {
+    //     const list = value.split('')
+    //     for (let i = 0; i < list.length; i++) {
+    //       document.getElementById(`${i + 1}`).value = list[i]
+    //     }
+    //   }
+    // }
+
+    // dom.addEventListener('change', (e) => {
+    //   change('change:', e.target.value)
+    // })
+
+    // dom.addEventListener('input', (e) => {
+    //   change('input:', e.target.value)
+    // })
+    // dom.changeValueCallback = change
+    // dom.focus;
 
   </script>
 </body>
