@@ -1,12 +1,12 @@
 <html>
 <body>
   <input id="one-time-code" tab-index="0"  type="tel" autocomplete="one-time-code" />
-<!--   <input id="1" tab-index="1" type="tel" autocomplete="off" />
+  <input id="1" tab-index="1" type="tel" autocomplete="off" />
   <input id="2" tab-index="2" type="tel" autocomplete="off" />
   <input id="3" tab-index="3" type="tel" autocomplete="off" />
   <input id="4" tab-index="4" type="tel" autocomplete="off" />
   <input id="5" tab-index="5" type="tel" autocomplete="off" />
-  <input id="6" tab-index="6" type="tel" autocomplete="off" /> -->
+  <input id="6" tab-index="6" type="tel" autocomplete="off" />
   <div id="log"></div>
   <script>
     const dom = document.getElementById('one-time-code')
@@ -23,12 +23,12 @@
     function change(type, value) {
       const log = document.getElementById('log')
       log.innerHTML += `<div>${type}: ${value}</div>`
-//       if (value) {
-//         const list = value.split('')
-//         for (let i = 0; i < list.length; i++) {
-//           document.getElementById(`${i + 1}`).value = list[i]
-//         }
-//       }
+      if (value) {
+        const list = value.split('')
+        for (let i = 0; i < list.length; i++) {
+          document.getElementById(`${i + 1}`).value = list[i]
+        }
+      }
     }
 
     dom.addEventListener('change', (e) => {
@@ -39,6 +39,8 @@
       change('input:', e.target.value)
     })
     dom.changeValueCallback = change
+    dom.focus();
+    
   </script>
 </body>
 </html>
