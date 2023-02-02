@@ -105,7 +105,9 @@
             if(oCapture.mozSrcObject !== undefined){
                 oCapture.mozSrcObject = buffer;
             }else{
-                oCapture.src = window.URL && window.URL.createObjectURL(new Blob(buffer));                
+                var binaryData = [];
+                binaryData.push(buffer);
+                oCapture.src = window.URL && window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))                
             }
             oCapture.play();
         }
