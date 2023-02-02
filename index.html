@@ -83,7 +83,7 @@
         window.navigator.getUserMedia = navigator.getUserMedia || navigator.webKitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
         
         function invokingCarera(){
-            if(navigator.mediaDevices&amp;&amp;navigator.mediaDevices.getUserMedia){
+            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
                 navigator.mediaDevices.getUserMedia({
                     'audio':true,
                     'video':{ 'facingMode': "user" }//调用前置摄像头，后置摄像头使用video: { facingMode: { exact: "environment" } }
@@ -105,7 +105,7 @@
             if(oCapture.mozSrcObject !== undefined){
                 oCapture.mozSrcObject = buffer;
             }else{
-                oCapture.src = window.URL &amp;&amp; window.URL.createObjectURL(buffer);                
+                oCapture.src = window.URL && window.URL.createObjectURL(buffer);                
             }
             oCapture.play();
         }
@@ -133,7 +133,7 @@
             }
         })
         function closeCamera(){
-            buffer&amp;&amp;buffer.getTracks()[1].stop();//关闭摄像头
+            buffer&&buffer.getTracks()[1].stop();//关闭摄像头
         }        
         window.requestAnimFrame = (function(){
           return  window.requestAnimationFrame       ||
