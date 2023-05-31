@@ -15,6 +15,7 @@ jobs:
   run-other-job:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/test-action
       - uses: actions/setup-node@v3
         with: 
