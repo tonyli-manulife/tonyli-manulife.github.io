@@ -23,5 +23,5 @@ jobs:
   test-action:
     runs-on: ubuntu-latest
     steps:
-      - name: test-action-name
-        uses: ./.github/actions/test.yml
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/test.yml
