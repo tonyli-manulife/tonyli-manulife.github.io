@@ -1,0 +1,11 @@
+name: test actions
+jobs:
+  test-action:
+    run-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo test actions start
+      - run: ls -a
+      - run: echo test actions end
+      
+
