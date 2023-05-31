@@ -23,9 +23,15 @@ function oninput(e) {
     document.getElementById(`${tabIndex + 1}`).focus()
   }
 }
-document.onload = () => {
+
+function log(string) {
+  const log = document.getElementById('log')
+  log.innerHTML += `<div>${string}</div>`
+}
+
+window.onload = () => {
   console.log('document onload')
-for (let i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 6; i++) {
   let tmp = document.getElementById(`${i}`)
   console.log('add handle', tmp, i)
   tmp.onkeydown = onkeydown
@@ -33,9 +39,4 @@ for (let i = 1; i <= 6; i++) {
 }
   
 document.getElementById(`1`).focus()
-}
-
-function log(string) {
-  const log = document.getElementById('log')
-  log.innerHTML += `<div>${string}</div>`
 }
