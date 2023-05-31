@@ -20,8 +20,7 @@ jobs:
           node-version: '14'
       - run: node -v
       - run: echo I am another job.
-  test-action:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/test-action
+runs:
+  steps:
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/test-action
