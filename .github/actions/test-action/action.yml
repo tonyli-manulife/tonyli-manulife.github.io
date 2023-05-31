@@ -1,12 +1,10 @@
 name: test-action
 runs:
-  jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - run: echo test actions start
-        - run: ls -a
-        - run: echo test actions end
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v3
+    - run: echo test actions start
+    - run: ls -a
+    - run: echo test actions end
       
 
