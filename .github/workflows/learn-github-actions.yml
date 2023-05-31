@@ -15,9 +15,9 @@ jobs:
   run-other-job:
     runs-on: ubuntu-latest
     steps:
+      - uses: ./.github/actions/test-action
       - uses: actions/setup-node@v3
         with: 
           node-version: '14'
       - run: node -v
       - run: echo I am another job.
-      - uses: ./.github/actions/test-action
