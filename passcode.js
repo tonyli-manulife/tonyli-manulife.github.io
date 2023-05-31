@@ -24,11 +24,14 @@ function oninput(e) {
   }
 }
 document.onload = () => {
+  console.log('document onload')
 for (let i = 1; i <= 6; i++) {
   let tmp = document.getElementById(`${i}`)
+  console.log('add handle', tmp, i)
   tmp.onkeydown = onkeydown
   tmp.oninput = oninput
 }
+  
 document.getElementById(`1`).focus()
 }
 
