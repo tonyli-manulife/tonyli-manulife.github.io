@@ -23,13 +23,14 @@ function oninput(e) {
     document.getElementById(`${tabIndex + 1}`).focus()
   }
 }
-
+document.onload = () => {
 for (let i = 1; i <= 6; i++) {
   let tmp = document.getElementById(`${i}`)
   tmp.onkeydown = onkeydown
   tmp.oninput = oninput
 }
 document.getElementById(`1`).focus()
+}
 
 function log(string) {
   const log = document.getElementById('log')
