@@ -4,7 +4,7 @@ on: [push] # 触发action的事件
 inputs: # 输入文件的集合
   file-path: 
     description: "the input file" # 输入文件的描述
-    required: true # 文件是否必要
+    required: false # 文件是否必要
     default: 'default.js' # 默认文件
 outputs: # 输出文件
   results-file: 
