@@ -7,5 +7,6 @@ runs:
          node-version: '14'
          check-latest: true
     - run: npm -v
+      shell: bash
       
 
