@@ -23,10 +23,12 @@ jobs: # ACTION执行作业的集合
   job-two:
     name: task 2
     runs-on: ubuntu-latest
-    - uses: actions/checkout@v3
-    - uses: ./.github/actions/test-action #引入其他actions
-    # -uses: {owner}/{repo}@{ref} #引入其他仓库的actions
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/test-action #引入其他actions
+      # -uses: {owner}/{repo}@{ref} #引入其他仓库的actions
   job-three:
+    name: task 3
     runs-on: ubuntu-latest #作业运行的平台
     steps: #作业运行的步骤
       - uses: actions/checkout@v3  #每当工作流程将针对存储库的代码运行时，都应使用签出操作。 
