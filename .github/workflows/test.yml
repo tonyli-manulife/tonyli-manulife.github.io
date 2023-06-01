@@ -1,6 +1,6 @@
 name: Test # ACTION的名字在GITHUB页面上显示
-no: [push] # 触发action的事件
 run-name: Test Action # 运行的ACTION的名字
+on: [push] # 触发action的事件
 inputs: # 输入文件的集合
   file-path: 
     description: "the input file" # 输入文件的描述
