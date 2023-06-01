@@ -1,6 +1,7 @@
 name: Test # ACTION的名字在GITHUB页面上显示
 run-name: Test Action # 运行的ACTION的名字
 on: [push] # 触发action的事件
+# github.ref 当前分支名
 # inputs: # 输入文件的集合
 #   file-path: 
 #     description: "the input file" # 输入文件的描述
@@ -39,4 +40,21 @@ jobs: # ACTION执行作业的集合
         run: node ./test.js #node执行js文件
         env: # 执行的环境变量
           HOST: 'LOCALHOST'
-          PROT: 3000
+          PORT: 3000
+  job-four:
+    name: task 4
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Dump github context'
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}' # 查看github的context
+      - name: Dump job context
+        run: echo ' ${{toJSON(job)}} ' # 查看job的context
+      - name: Dump step context
+        run: echo ' ${{toJSON(steps)}} ' # 查看steps的context
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'  # 查看runner的context
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}' # 查看strategy的context
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}' # 查看matrix的context
