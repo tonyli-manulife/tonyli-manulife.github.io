@@ -8,5 +8,9 @@ runs:
          check-latest: true
     - run: npm -v
       shell: bash
+    - run: echo test action
+      shell: bash
+    - run: pwd
+      shell: bash
       
 
