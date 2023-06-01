@@ -2,9 +2,10 @@ name: test-action
 runs:
   using: 'composite'
   steps:
-      shell: bash
-    - run: echo test actions start
-    - run: ls -a
-    - run: echo test actions end
+    - uses: actions/setup-node@v2
+      with: 
+         node-version: '14'
+         check-latest: true
+    - run: npm -v
       
 
