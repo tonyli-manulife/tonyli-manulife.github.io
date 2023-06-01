@@ -1,16 +1,8 @@
 name: Test # ACTION的名字在GITHUB页面上显示
 run-name: Test Action # 运行的ACTION的名字
-# inputs: # 输入文件的集合
-#   file-path: 
-#     description: "the input file" # 输入文件的描述
-#     required: false # 文件是否必要
-#     default: 'default.js' # 默认文件
-# outputs: # 输出文件
-#   results-file: 
-#     description: "the output file" # 输出文件描述
 on: [push] # 触发action的事件
 jobs: # ACTION执行作业的集合
-	job-one:
+  job-one:
 		# name: task 1 #作业的名字 
 		runs-on: ubuntu-latest #作业运行的平台
 		steps: #作业运行的步骤
@@ -38,3 +30,11 @@ jobs: # ACTION执行作业的集合
         env: # 执行的环境变量
           HOST: 'LOCALHOST'
           PROT: 3000
+# inputs: # 输入文件的集合
+#   file-path: 
+#     description: "the input file" # 输入文件的描述
+#     required: false # 文件是否必要
+#     default: 'default.js' # 默认文件
+# outputs: # 输出文件
+#   results-file: 
+#     description: "the output file" # 输出文件描述
