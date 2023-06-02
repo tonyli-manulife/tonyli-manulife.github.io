@@ -1,6 +1,11 @@
 name: Test # ACTION的名字在GITHUB页面上显示
 run-name: Test Action # 运行的ACTION的名字
-on: [push] # 触发action的事件
+on: 
+  workflow_dispatch:
+  push: 
+    branches:
+      - develop
+  [push] # 触发action的事件
 # github.ref 当前分支名
 # inputs: # 输入文件的集合
 #   file-path: 
