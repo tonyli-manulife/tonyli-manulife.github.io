@@ -2,10 +2,10 @@ name: schedule test
 on: 
   workflow_dispatch:
   schedule: 
-    - cron: '50 08 * * *' # once a day at 19:40 UTC
+    - cron: '52 08 * * *' # once a day at 19:40 UTC
 jobs:
   schedule_job:
     runs-on: ubuntu-latest
     steps:
-      uses: actions/checkout@v3
-      run: echo test the schedule action
+      - uses: actions/checkout@v3
+      - run: echo test the schedule action
