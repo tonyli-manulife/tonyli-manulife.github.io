@@ -2,7 +2,8 @@ name: schedule test
 on: 
   workflow_dispatch:
   schedule: 
-    - cron: '52 08 * * *' # once a day at 19:40 UTC
+    - cron: '58 08 * * *' # once a day at 08:58 UTC
+    - cron: '00 17 * * *' # 每天下午五点执行
 jobs:
   schedule_job:
     runs-on: ubuntu-latest
