@@ -15,6 +15,8 @@ on:
 # outputs: # 输出文件
 #   results-file: 
 #     description: "the output file" # 输出文件描述
+concurrency:
+  cancel-in-progress: true # 取消同一并发组中任何当前正在运行的作业或者工作流
 jobs: # ACTION执行作业的集合
   job-one:
     name: task 1 #作业的名字 
