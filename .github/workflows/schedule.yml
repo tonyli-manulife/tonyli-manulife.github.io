@@ -1,9 +1,9 @@
 name: schedule test
 on: 
   workflow_dispatch:
-  schedule: 
-    - cron: '12 * * * *' # once a day at 08:58 UTC
-    - cron: '10 17 * * *'
+  # schedule: 
+  #  - cron: '12 * * * *' # once a day at 08:58 UTC
+  #  - cron: '10 17 * * *'
 jobs:
   schedule_job:
     runs-on: ubuntu-latest
